@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Deepfake Detection for Google Meet",
+  "version": "1.0.0",
+  "description": "Capture screenshots from Google Meet and analyze them for deepfake detection",
+  
+  "permissions": [
+    "activeTab",
+    "tabs"
+  ],
+  
+  "host_permissions": [
+    "https://meet.google.com/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Deepfake Detection"
+  }
+}
+
