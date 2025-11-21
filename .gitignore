@@ -43,6 +43,9 @@ yarn.lock
 *.temp
 .cache/
 
+# Documentation
+V0_PROMPT.md
+
 # Backend specific
 backend/node_modules/
 backend/.env
