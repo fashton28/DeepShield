@@ -41,23 +41,63 @@ app.use((req, res) => {
   });
 });
 
+// Server instance (null until started)
+let server = null;
+
 // Start server
-async function startServer() {
+async function startServer(port = PORT) {
   try {
     // Connect to MongoDB
     await connectToDatabase();
     console.log('Connected to MongoDB');
 
     // Start Express server
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-      console.log(`Health check: http://localhost:${PORT}/health`);
+    return new Promise((resolve, reject) => {
+      server = app.listen(port, () => {
+        console.log(`Server running on http://localhost:${port}`);
+        console.log(`Health check: http://localhost:${port}/health`);
+        resolve(server);
+      });
+
+      server.on('error', (error) => {
+        console.error('Failed to start server:', error);
+        reject(error);
+      });
     });
   } catch (error) {
     console.error('Failed to start server:', error);
-    process.exit(1);
+    throw error;
   }
 }
 
-startServer();
+// Graceful shutdown
+async function stopServer() {
+  return new Promise((resolve) => {
+    if (server) {
+      server.close(() => {
+        console.log('Server stopped');
+        server = null;
+        resolve();
+      });
+    } else {
+      resolve();
+    }
+  });
+}
+
+// Export for use in Electron
+export { app, startServer, stopServer };
+
+// Auto-start if running directly (not imported)
+// For ES modules, check if this is the main module
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const isMainModule = process.argv[1] && (process.argv[1].endsWith('server.js') || process.argv[1] === __filename);
+
+if (isMainModule) {
+  startServer().catch((error) => {
+    console.error('Failed to start server:', error);
+    process.exit(1);
+  });
+}
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Source to Capture</title>
+  <link rel="stylesheet" href="window-selector.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Select Source to Capture</h1>
+      <p class="subtitle">Choose a window or screen to analyze for deepfakes</p>
+    </header>
+
+    <div class="status" id="status">
+      <div class="status-indicator" id="status-indicator"></div>
+      <span id="status-text">Loading sources...</span>
+    </div>
+
+    <div class="sources-container" id="sources-container">
+      <div class="loading" id="loading">Loading available sources...</div>
+    </div>
+
+    <div class="actions">
+      <button id="refresh-btn" class="btn btn-secondary">Refresh Sources</button>
+      <button id="cancel-btn" class="btn btn-secondary">Cancel</button>
+    </div>
+
+    <div class="results" id="results" style="display: none;">
+      <h2>Analysis Results</h2>
+      <div id="results-content"></div>
+    </div>
+  </div>
+
+  <script src="window-selector.js"></script>
+</body>
+</html>
+
