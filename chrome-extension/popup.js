@@ -16,7 +16,6 @@ const errorMessage = document.getElementById('error-message');
  * @param {string} text - Status text to display
  */
 function updateStatus(status, text) {
-  // TODO: Update status indicator classes and text
   statusIndicator.className = `status-indicator status-${status}`;
   statusText.textContent = text;
 }
@@ -163,8 +162,7 @@ async function captureAndAnalyze() {
     analyzeBtn.disabled = true;
     resultsSection.classList.add('hidden');
     errorSection.classList.add('hidden');
-    
-    // TODO: Send message to background script
+
     const response = await chrome.runtime.sendMessage({
       action: 'captureAndAnalyze'
     });
