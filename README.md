@@ -1,16 +1,16 @@
-# 🛡️ Deep Shield
+# Deep Shield
 
 **Deep Shield** is a comprehensive deepfake detection platform designed for interviewers to verify the authenticity of candidates during video calls. The platform combines real-time deepfake detection with a powerful dashboard for analyzing detection results.
 
-## 🌟 Features
+## Features
 
-- **Real-time Deepfake Detection**: Capture and analyze screenshots from Google Meet calls using NVIDIA Hive AI
-- **Chrome Extension**: Seamless integration with Google Meet for instant detection
-- **Analytics Dashboard**: Comprehensive dashboard with charts, statistics, and detection history
-- **MongoDB Storage**: Persistent storage of all detection results for analysis
-- **Modern UI**: Beautiful, responsive Next.js dashboard with real-time data visualization
+* **Real-time Deepfake Detection**: Capture and analyze screenshots from Google Meet calls using NVIDIA Hive AI
+* **Chrome Extension**: Seamless integration with Google Meet for instant detection
+* **Analytics Dashboard**: Comprehensive dashboard with charts, statistics, and detection history
+* **MongoDB Storage**: Persistent storage of all detection results for analysis
+* **Modern UI**: Beautiful, responsive Next.js dashboard with real-time data visualization
 
-## 🏗️ Architecture
+## Architecture
 
 Deep Shield consists of three main components:
 
@@ -18,37 +18,40 @@ Deep Shield consists of three main components:
 2. **Backend API** - Express.js server that processes images using NVIDIA Hive API and stores results in MongoDB
 3. **Frontend Dashboard** - Next.js application for viewing and analyzing detection results
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
-- **Node.js** with Express.js
-- **MongoDB** with Mongoose
-- **NVIDIA Hive API** for deepfake detection
-- **RESTful API** architecture
+
+* **Node.js** with Express.js
+* **MongoDB** with Mongoose
+* **NVIDIA Hive API** for deepfake detection
+* **RESTful API** architecture
 
 ### Frontend
-- **Next.js 15** with React 19
-- **TypeScript** for type safety
-- **Tailwind CSS** for styling
-- **Recharts** for data visualization
-- **shadcn/ui** components
+
+* **Next.js 15** with React 19
+* **TypeScript** for type safety
+* **Tailwind CSS** for styling
+* **Recharts** for data visualization
+* **shadcn/ui** components
 
 ### Chrome Extension
-- **Manifest V3**
-- **Service Worker** for background processing
-- **Content Scripts** for Google Meet integration
 
-## 📋 Prerequisites
+* **Manifest V3**
+* **Service Worker** for background processing
+* **Content Scripts** for Google Meet integration
+
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** (v18 or higher)
-- **pnpm** (or npm/yarn)
-- **MongoDB** (local installation or MongoDB Atlas account)
-- **Chrome Browser** (for the extension)
-- **NVIDIA API Key** (for deepfake detection)
+* **Node.js** (v18 or higher)
+* **pnpm** (or npm/yarn)
+* **MongoDB** (local installation or MongoDB Atlas account)
+* **Chrome Browser** (for the extension)
+* **NVIDIA API Key** (for deepfake detection)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -130,13 +133,14 @@ The frontend will start on `http://localhost:3001` (or the next available port)
 #### Add Extension Icons (Optional)
 
 The extension requires icon files. Create or add the following to `chrome-extension/icons/`:
-- `icon16.png` (16x16 pixels)
-- `icon48.png` (48x48 pixels)
-- `icon128.png` (128x128 pixels)
+
+* `icon16.png` (16x16 pixels)
+* `icon48.png` (48x48 pixels)
+* `icon128.png` (128x128 pixels)
 
 See `chrome-extension/icons/README.md` for more details.
 
-## 📖 Usage
+## Usage
 
 ### Using the Chrome Extension
 
@@ -144,29 +148,33 @@ See `chrome-extension/icons/README.md` for more details.
 2. Click the Deep Shield extension icon in your Chrome toolbar
 3. Click **"Capture & Analyze"** to capture a screenshot and analyze it
 4. View the results showing:
-   - Fake Probability percentage
-   - Confidence score
-   - Status (Likely Real, Uncertain, or Likely Deepfake)
+
+   * Fake Probability percentage
+   * Confidence score
+   * Status (Likely Real, Uncertain, or Likely Deepfake)
 
 ### Using the Dashboard
 
 1. Open the dashboard at `http://localhost:3001/dashboard`
 2. View real-time statistics:
-   - Average Deepfake Percentage
-   - Total Detections
-   - Authentic Detections
-   - Recent Activity (last 24 hours)
+
+   * Average Deepfake Percentage
+   * Total Detections
+   * Authentic Detections
+   * Recent Activity (last 24 hours)
 3. Explore charts and visualizations:
-   - Deepfake Detection Trend (line chart)
-   - Fake Probability Distribution (bar chart)
+
+   * Deepfake Detection Trend (line chart)
+   * Fake Probability Distribution (bar chart)
 4. Review detection history in the table with:
-   - Date and time
-   - Fake probability and confidence scores
-   - Status indicators
 
-## 📁 Project Structure
+   * Date and time
+   * Fake probability and confidence scores
+   * Status indicators
 
-```
+## Project Structure
+
+```text
 DeepShield/
 ├── backend/                 # Express.js backend API
 │   ├── db/                 # MongoDB models and connection
@@ -204,14 +212,16 @@ DeepShield/
 └── README.md             # This file
 ```
 
-## 🔌 API Endpoints
+## API Endpoints
 
 ### Deepfake Detection
 
 #### POST `/api/deepfake`
+
 Analyze an image for deepfake detection.
 
 **Request:**
+
 ```json
 {
   "image": "<base64_encoded_image>",
@@ -220,6 +230,7 @@ Analyze an image for deepfake detection.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -233,15 +244,18 @@ Analyze an image for deepfake detection.
 ```
 
 #### GET `/api/deepfake/results`
+
 Get detection results from the database.
 
 **Query Parameters:**
-- `limit` (optional): Number of results (default: 50)
-- `sort` (optional): Sort order - `asc` or `desc` (default: `desc`)
-- `startDate` (optional): Filter by start date (ISO string)
-- `endDate` (optional): Filter by end date (ISO string)
+
+* `limit` (optional): Number of results (default: 50)
+* `sort` (optional): Sort order - `asc` or `desc` (default: `desc`)
+* `startDate` (optional): Filter by start date (ISO string)
+* `endDate` (optional): Filter by end date (ISO string)
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -262,9 +276,11 @@ Get detection results from the database.
 ### Health Check
 
 #### GET `/health`
+
 Check if the server is running.
 
 **Response:**
+
 ```json
 {
   "status": "ok",
@@ -272,7 +288,7 @@ Check if the server is running.
 }
 ```
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### DeepfakeDetection Collection
 
@@ -286,84 +302,91 @@ Check if the server is running.
 }
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Backend Configuration
 
-- **PORT**: Server port (default: 3000)
-- **MONGODB_URI**: MongoDB connection string
-- **NVIDIA_API_KEY**: Your NVIDIA Hive API key
+* **PORT**: Server port (default: 3000)
+* **MONGODB_URI**: MongoDB connection string
+* **NVIDIA_API_KEY**: Your NVIDIA Hive API key
 
 ### Frontend Configuration
 
-- **NEXT_PUBLIC_API_URL**: Backend API URL (default: http://localhost:3000)
+* **NEXT_PUBLIC_API_URL**: Backend API URL (default: http://localhost:3000)
 
 ### Chrome Extension Configuration
 
-- **BACKEND_URL**: Backend API endpoint (configured in `background.js`)
+* **BACKEND_URL**: Backend API endpoint (configured in `background.js`)
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Backend Issues
 
 **MongoDB Connection Error:**
-- Verify your `MONGODB_URI` in `.env` is correct
-- Ensure MongoDB is running (local) or your Atlas cluster is accessible
-- Check network connectivity
+
+* Verify your `MONGODB_URI` in `.env` is correct
+* Ensure MongoDB is running (local) or your Atlas cluster is accessible
+* Check network connectivity
 
 **NVIDIA API Errors:**
-- Verify your `NVIDIA_API_KEY` is correct and has proper permissions
-- Check API rate limits
-- Ensure image size is within limits (< 180KB base64 for direct upload)
+
+* Verify your `NVIDIA_API_KEY` is correct and has proper permissions
+* Check API rate limits
+* Ensure image size is within limits (< 180KB base64 for direct upload)
 
 ### Frontend Issues
 
 **API Connection Errors:**
-- Verify `NEXT_PUBLIC_API_URL` matches your backend URL
-- Ensure the backend server is running
-- Check CORS settings in the backend
+
+* Verify `NEXT_PUBLIC_API_URL` matches your backend URL
+* Ensure the backend server is running
+* Check CORS settings in the backend
 
 **No Data Displayed:**
-- Check browser console for errors
-- Verify backend API is returning data
-- Check network tab for failed requests
+
+* Check browser console for errors
+* Verify backend API is returning data
+* Check network tab for failed requests
 
 ### Chrome Extension Issues
 
 **Extension Not Loading:**
-- Ensure all required files are present
-- Check `manifest.json` for syntax errors
-- Verify icons are in the correct location
+
+* Ensure all required files are present
+* Check `manifest.json` for syntax errors
+* Verify icons are in the correct location
 
 **Screenshot Not Working:**
-- Ensure you're on a Google Meet page
-- Check browser permissions for the extension
-- Verify the backend URL is correct in `background.js`
 
-## 🤝 Contributing
+* Ensure you're on a Google Meet page
+* Check browser permissions for the extension
+* Verify the backend URL is correct in `background.js`
+
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+4. Push to the branch:
+   `git push origin feature/AmazingFeature`
 5. Open a Pull Request
 
-## 📝 License
+## License
 
 This project is licensed under the ISC License.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- **NVIDIA Hive API** for deepfake detection capabilities
-- **Next.js** and **React** communities
-- **shadcn/ui** for beautiful UI components
+* **NVIDIA Hive API** for deepfake detection capabilities
+* **Next.js** and **React** communities
+* **shadcn/ui** for beautiful UI components
 
-## 📧 Support
+## Support
 
 For issues, questions, or contributions, please open an issue on the [GitHub repository](https://github.com/fashton28/DeepShield).
 
 ---
 
-**Built with ❤️ for reliable candidate verification**
+**Built for reliable candidate verification**
